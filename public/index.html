@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC-SS - Build Your Dream Computer</title>
+  <meta name="description" content="Build your perfect custom PC with AUTORIG's advanced compatibility checker and real-time pricing. Choose from thousands of components and get expert recommendations." />
+  <meta name="keywords" content="AUTORIG, PC builder, custom computer, gaming PC, computer components, PC compatibility" />
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body id="user-app">
+  <header class="header">
+    <div class="header-content">
+      <h1>🖥️ PC-SS</h1>
+      <p class="header-subtitle">Build Your Dream Computer</p>
+    </div>
+            <nav>
+              <a id="login-link" class="neon-link" href="/login.html" title="Sign In">
+                <span>🔐</span> Login
+              </a>
+              <a id="signup-link" class="neon-link" href="/signup.html" title="Create Account">
+                <span>📝</span> Sign Up
+              </a>
+              <a id="profile-link" class="neon-link" href="/profile.html" title="Your Profile" style="display:none;">
+                <span>👤</span> Profile
+              </a>
+              <a id="logout-link" class="neon-link" href="#" title="Sign out" style="display:none;">
+                <span>🚪</span> Logout
+              </a>
+              <a class="neon-link" href="/admin.html" title="Administrator Panel">
+                <span>⚙️</span> Admin Panel
+              </a>
+              <a class="neon-link" href="/suggestions.html" title="Get PC Build Suggestions">
+                <span>💡</span> Suggestions
+              </a>
+            </nav>
+  </header>
+
+  <main class="container">
+    <section class="panel selections">
+      <h2>🎯 Choose Your Components</h2>
+      <div class="budget-row">
+        <div class="budget-input-group">
+          <label for="budget">💰 Budget (₹):</label>
+          <input type="number" id="budget" min="20000" step="1000" placeholder="50000" value="50000" />
+        </div>
+        <div class="purpose-input-group">
+          <label for="suggest-purpose">🎮 Purpose:</label>
+          <select id="suggest-purpose">
+            <option value="office">💼 Office Build</option>
+            <option value="gaming">🎮 Gaming PC</option>
+            <option value="coders">💻 Development</option>
+            <option value="content">🎨 Content Creation</option>
+          </select>
+        </div>
+        <button id="suggest-btn" class="btn-primary">
+          <span>🚀</span> Suggest Build
+        </button>
+      </div>
+      <div id="category-selects" class="category-selects"></div>
+    </section>
+
+    <section class="panel details">
+      <h2>📋 Component Details</h2>
+      <div id="details-panel" class="details-panel">
+        <div class="details-placeholder">
+          <span>🔍</span>
+          <p>Select a component to view detailed specifications and pricing information.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel summary">
+      <h2>📊 Build Summary</h2>
+      <div id="summary-list" class="summary-list"></div>
+      <div class="total-row">
+        <span>💰 Total Cost:</span>
+        <span id="total-price">₹0.00</span>
+      </div>
+      <button id="validate-btn" class="btn-primary">
+        <span>✅</span> Validate Build
+      </button>
+      <div id="validation-result" class="validation-result"></div>
+      <div id="suggestion-summary" class="validation-result" style="white-space:pre-wrap;margin-top:8px;"></div>
+
+      <div id="upgrades-section" style="margin-top:12px;">
+        <h3 style="margin:8px 0;color:#9aa0a6;">💡 Upgrade Suggestions</h3>
+        <div id="upgrade-suggestions" class="upgrade-suggestions">
+          <div class="hint">
+            <span>💡</span>
+            Select components and set your budget to see suggestions for small increases or decreases in spend.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AUTORIG</p>
+      <div class="footer-links">
+        <a href="/privacy.html" class="footer-link">🔒 Privacy Policy</a>
+        <a href="/terms.html" class="footer-link">📜 Terms of Service</a>
+        <a href="/support.html" class="footer-link">🆘 Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

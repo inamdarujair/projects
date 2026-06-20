@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "name": "CPU-Motherboard Socket Match",
+      "type": "field-equality",
+      "fromCategory": "CPU",
+      "toCategory": "Motherboard",
+      "fromField": "socket",
+      "toField": "socket",
+      "message": "CPU and Motherboard sockets must match."
+    },
+    {
+      "name": "GPU requires PSU wattage",
+      "type": "psu-min-wattage",
+      "gpuField": "recommended_psu_watts",
+      "psuField": "wattage",
+      "message": "PSU wattage must be >= GPU recommended PSU watts."
+    },
+    {
+      "name": "RAM type compatibility",
+      "type": "field-equality",
+      "fromCategory": "RAM",
+      "toCategory": "Motherboard",
+      "fromField": "type",
+      "toField": "memory_type",
+      "message": "RAM type must match motherboard memory type."
+    }
+  ]
+}

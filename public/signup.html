@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC-SS - Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>📝 PC-SS Sign Up</h1>
+      <p class="header-subtitle">Create Your Account</p>
+    </div>
+    <nav>
+      <a class="neon-link" href="/" title="Back to Main App">
+        <span>🏠</span> Home
+      </a>
+      <a class="neon-link" href="/login.html" title="Already have an account?">
+        <span>🔐</span> Login
+      </a>
+    </nav>
+  </header>
+
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>🚀 Join PC-SS</h2>
+        <p>Create your account and start building</p>
+      </div>
+
+      <form class="auth-form" id="signupForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">👤 First Name</label>
+            <input type="text" id="firstName" name="firstName" required placeholder="First name" />
+            <div class="input-icon">👤</div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">👤 Last Name</label>
+            <input type="text" id="lastName" name="lastName" required placeholder="Last name" />
+            <div class="input-icon">👤</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">📧 Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email" />
+          <div class="input-icon">📧</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">🔒 Password</label>
+          <input type="password" id="password" name="password" required placeholder="Create a strong password" />
+          <div class="input-icon">🔒</div>
+          <button type="button" class="password-toggle" onclick="togglePassword('password')">
+            <span class="toggle-icon">👁️</span>
+          </button>
+          <div class="password-strength" id="passwordStrength"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">🔒 Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password" />
+          <div class="input-icon">🔒</div>
+          <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+            <span class="toggle-icon">👁️</span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">💰 Budget Range</label>
+          <select id="budget" name="budget" required>
+            <option value="">Select your budget range</option>
+            <option value="20000-50000">₹20,000 - ₹50,000</option>
+            <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+            <option value="100000-200000">₹1,00,000 - ₹2,00,000</option>
+            <option value="200000+">₹2,00,000+</option>
+          </select>
+          <div class="input-icon">💰</div>
+        </div>
+
+        <div class="form-group">
+          <label for="purpose">🎯 Primary Use</label>
+          <select id="purpose" name="purpose" required>
+            <option value="">What will you use your PC for?</option>
+            <option value="gaming">🎮 Gaming</option>
+            <option value="office">💼 Office Work</option>
+            <option value="development">💻 Development</option>
+            <option value="content">🎨 Content Creation</option>
+            <option value="general">🖥️ General Use</option>
+          </select>
+          <div class="input-icon">🎯</div>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required />
+            <span class="checkmark"></span>
+            <span class="checkbox-label">I agree to the <a href="/terms.html" class="auth-link">Terms of Service</a></span>
+          </label>
+          <label class="checkbox-container">
+            <input type="checkbox" id="privacy" name="privacy" required />
+            <span class="checkmark"></span>
+            <span class="checkbox-label">I agree to the <a href="/privacy.html" class="auth-link">Privacy Policy</a></span>
+          </label>
+          <label class="checkbox-container">
+            <input type="checkbox" id="newsletter" name="newsletter" />
+            <span class="checkmark"></span>
+            <span class="checkbox-label">Subscribe to newsletter for updates</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary auth-btn">
+          <span>🚀</span> Create Account
+        </button>
+
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+
+        <div class="social-login">
+          <button type="button" class="social-btn google-btn">
+            <span>🌐</span> Sign up with Google
+          </button>
+          <button type="button" class="social-btn github-btn">
+            <span>🐙</span> Sign up with GitHub
+          </button>
+        </div>
+
+        <div class="auth-footer">
+          <p>Already have an account? <a href="/login.html" class="auth-link">Sign in here</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="auth-features">
+      <h3>🎉 Welcome to AUTORIG!</h3>
+      <div class="feature-list">
+        <div class="feature-item">
+          <span class="feature-icon">🎯</span>
+          <div>
+            <h4>Personalized Recommendations</h4>
+            <p>Get builds tailored to your needs and budget</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💾</span>
+          <div>
+            <h4>Save Your Builds</h4>
+            <p>Keep track of your favorite configurations</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📈</span>
+          <div>
+            <h4>Price Tracking</h4>
+            <p>Monitor component prices and get alerts</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">👥</span>
+          <div>
+            <h4>Community Access</h4>
+            <p>Share builds and get feedback from others</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 PC-SS</p>
+      <div class="footer-links">
+        <a href="/" class="footer-link">🏠 Home</a>
+        <a href="/privacy.html" class="footer-link">🔒 Privacy Policy</a>
+        <a href="/support.html" class="footer-link">🆘 Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Password toggle functionality
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const toggleIcon = input.parentElement.querySelector('.toggle-icon');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        toggleIcon.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        toggleIcon.textContent = '👁️';
+      }
+    }
+
+    // Password strength checker
+    document.getElementById('password').addEventListener('input', function() {
+      const password = this.value;
+      const strengthDiv = document.getElementById('passwordStrength');
+      let strength = 0;
+      let strengthText = '';
+      let strengthColor = '';
+
+      if (password.length >= 8) strength++;
+      if (/[a-z]/.test(password)) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      switch (strength) {
+        case 0:
+        case 1:
+          strengthText = 'Very Weak';
+          strengthColor = '#ff4d4d';
+          break;
+        case 2:
+          strengthText = 'Weak';
+          strengthColor = '#ff6b35';
+          break;
+        case 3:
+          strengthText = 'Fair';
+          strengthColor = '#ffb347';
+          break;
+        case 4:
+          strengthText = 'Good';
+          strengthColor = '#00ff88';
+          break;
+        case 5:
+          strengthText = 'Strong';
+          strengthColor = '#00e5ff';
+          break;
+      }
+
+      strengthDiv.innerHTML = `<span style="color: ${strengthColor}">${strengthText}</span>`;
+    });
+
+    // Password confirmation validation
+    document.getElementById('confirmPassword').addEventListener('input', function() {
+      const password = document.getElementById('password').value;
+      const confirmPassword = this.value;
+      
+      if (confirmPassword && password !== confirmPassword) {
+        this.style.borderColor = '#ff4d4d';
+        this.setCustomValidity('Passwords do not match');
+      } else {
+        this.style.borderColor = '';
+        this.setCustomValidity('');
+      }
+    });
+
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Simulate signup process
+      const submitBtn = this.querySelector('.auth-btn');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<span>⏳</span> Creating Account...';
+      submitBtn.disabled = true;
+      
+      // Call backend signup
+      fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password
+        })
+      }).then(async (res) => {
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      }).then(() => {
+        window.location.href = '/';
+      }).catch((e) => {
+        alert('Signup failed: Email may already be in use');
+      }).finally(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+
+    // Social signup buttons
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const provider = this.classList.contains('google-btn') ? 'Google' : 'GitHub';
+        alert(`${provider} signup integration coming soon!`);
+      });
+    });
+  </script>
+</body>
+</html>

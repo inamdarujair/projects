@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUTORIG — Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>👤 Your Profile</h1>
+      <p class="header-subtitle">Manage your account and previous builds</p>
+    </div>
+    <nav>
+      <a class="neon-link" href="/" title="Back to Builder"><span>🏠</span> Builder</a>
+      <a id="logout-link" class="neon-link" href="#" title="Sign out" style="display:none;"><span>🚪</span> Logout</a>
+      <a class="neon-link" href="/admin.html" title="Administrator Panel"><span>⚙️</span> Admin Panel</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Account</h2>
+      <div id="me-box" class="rows"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Previous Builds</h2>
+      <div id="prev-builds" class="components-table"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AUTORIG</p>
+      <div class="footer-links">
+        <a href="/privacy.html" class="footer-link">🔒 Privacy Policy</a>
+        <a href="/support.html" class="footer-link">🆘 Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const moneyFmt = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 });
+    function money(v){ return moneyFmt.format(Number(v)||0); }
+
+    async function fetchJSON(path, opts={}){
+      const res = await fetch(path, { headers: { 'Content-Type':'application/json', ...(opts.headers||{}) }, ...opts });
+      if (!res.ok) throw new Error(await res.text());
+      return res.json();
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const me = await fetchJSON('/api/auth/me', { credentials: 'include' });
+        const box = document.getElementById('me-box');
+        box.innerHTML = `<div class="row"><div>Email</div><div><strong>${me.email}</strong></div></div>`;
+        const logoutLink = document.getElementById('logout-link');
+        if (logoutLink){
+          logoutLink.style.display = '';
+          logoutLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try { await fetchJSON('/api/auth/logout', { method: 'POST', credentials: 'include' }); } catch {}
+            window.location.href = '/login.html';
+          });
+        }
+      } catch {
+        window.location.href = '/login.html';
+        return;
+      }
+
+      await loadBuilds();
+    });
+
+    async function loadBuilds(){
+      const container = document.getElementById('prev-builds');
+      try {
+        const builds = await fetchJSON('/api/builds', { credentials: 'include' });
+        if (!Array.isArray(builds) || builds.length === 0){
+          container.innerHTML = '<div class="hint">No previous builds saved.</div>';
+          return;
+        }
+        const head = `<div class="row head"><div>Name</div><div>Budget</div><div>Total</div><div>Purpose</div><div>Created</div></div>`;
+        const rows = builds.map(b => (
+          `<div class="row"><div>${escapeHtml(b.name||'Build')}</div><div>${b.budget?money(b.budget):'-'}</div><div>${b.total_price?money(b.total_price):'-'}</div><div>${escapeHtml(b.purpose||'-')}</div><div>${new Date(b.created_at).toLocaleString()}</div></div>`
+        )).join('');
+        container.innerHTML = head + rows;
+      } catch {
+        container.innerHTML = '<div class="hint">Failed to load builds.</div>';
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]||c));
+    }
+  </script>
+</body>
+</html>
+
+

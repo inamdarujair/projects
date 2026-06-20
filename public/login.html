@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC-SS- Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>🔐 PC-SS Login</h1>
+      <p class="header-subtitle">Access Your Account</p>
+    </div>
+    <nav>
+      <a class="neon-link" href="/" title="Back to Main App">
+        <span>🏠</span> Home
+      </a>
+      <a class="neon-link" href="/signup.html" title="Create New Account">
+        <span>📝</span> Sign Up
+      </a>
+    </nav>
+  </header>
+
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>🔑 Welcome Back</h2>
+        <p>Sign in to your PC-SS account</p>
+      </div>
+
+      <form class="auth-form" id="loginForm">
+        <div class="form-group">
+          <label for="email">📧 Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email" />
+          <div class="input-icon">📧</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">🔒 Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password" />
+          <div class="input-icon">🔒</div>
+          <button type="button" class="password-toggle" onclick="togglePassword('password')">
+            <span class="toggle-icon">👁️</span>
+          </button>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-container">
+            <input type="checkbox" id="remember" name="remember" />
+            <span class="checkmark"></span>
+            <span class="checkbox-label">Remember me</span>
+          </label>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-primary auth-btn">
+          <span>🚀</span> Sign In
+        </button>
+
+        <div class="auth-divider">
+          <span>or</span>
+        </div>
+
+        <div class="social-login">
+          <button type="button" class="social-btn google-btn">
+            <span>🌐</span> Continue with Google
+          </button>
+          <button type="button" class="social-btn github-btn">
+            <span>🐙</span> Continue with GitHub
+          </button>
+        </div>
+
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="/signup.html" class="auth-link">Sign up here</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="auth-features">
+      <h3>🌟 Why Choose PC-SS?</h3>
+      <div class="feature-list">
+        <div class="feature-item">
+          <span class="feature-icon">🖥️</span>
+          <div>
+            <h4>Smart PC Building</h4>
+            <p>AI-powered component recommendations</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <div>
+            <h4>Real-time Validation</h4>
+            <p>Instant compatibility checking</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💰</span>
+          <div>
+            <h4>Budget Optimization</h4>
+            <p>Get the best value for your money</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📊</span>
+          <div>
+            <h4>Performance Estimates</h4>
+            <p>Know what to expect before you buy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 PC-SS</p>
+      <div class="footer-links">
+        <a href="/" class="footer-link">🏠 Home</a>
+        <a href="/privacy.html" class="footer-link">🔒 Privacy Policy</a>
+        <a href="/support.html" class="footer-link">🆘 Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Password toggle functionality
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const toggleIcon = input.parentElement.querySelector('.toggle-icon');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        toggleIcon.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        toggleIcon.textContent = '👁️';
+      }
+    }
+
+    // Form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      
+      // Simulate login process
+      const submitBtn = this.querySelector('.auth-btn');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<span>⏳</span> Signing In...';
+      submitBtn.disabled = true;
+      
+      // Call backend login
+      fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password, remember })
+      }).then(async (res) => {
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      }).then(() => {
+        window.location.href = '/';
+      }).catch(() => {
+        alert('Invalid email or password');
+      }).finally(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+
+    // Social login buttons
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const provider = this.classList.contains('google-btn') ? 'Google' : 'GitHub';
+        alert(`${provider} login integration coming soon!`);
+      });
+    });
+
+    // Forgot password
+    document.querySelector('.forgot-password').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Password reset functionality coming soon!');
+    });
+  </script>
+</body>
+</html>

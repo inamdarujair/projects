@@ -1,0 +1,21 @@
+{
+  "name": "autorig",
+  "version": "1.0.0",
+  "description": "AUTORIG - Custom PC Builder full-stack app (Express + SQLite + Vanilla JS)",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node src/server/server.js",
+    "dev": "nodemon src/server/server.js",
+    "build": "echo 'No build step required for this project'",
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC-SS — Suggestions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1>💡 PC-SS Suggestions</h1>
+      <p class="header-subtitle">Intelligent PC Build Recommendations</p>
+    </div>
+    <nav>
+      <a class="neon-link" href="/" title="Back to Main Builder">
+        <span>🏠</span> Main Builder
+      </a>
+      <a id="profile-link" class="neon-link" href="/profile.html" title="Your Profile" style="display:none;">
+        <span>👤</span> Profile
+      </a>
+      <a id="logout-link" class="neon-link" href="#" title="Sign out" style="display:none;">
+        <span>🚪</span> Logout
+      </a>
+      <a class="neon-link" href="/admin.html" title="Administrator Panel">
+        <span>⚙️</span> Admin Panel
+      </a>
+    </nav>
+  </header>
+
+  <main class="container suggestions-container">
+    <section class="panel controls-panel">
+      <h2>🎮 Build Controls</h2>
+      <div class="budget-row">
+        <div class="budget-input-group">
+          <label for="budget">💰 Budget (₹):</label>
+          <input type="number" id="budget" min="20000" step="1000" placeholder="70000" value="70000" />
+        </div>
+        <div class="purpose-input-group">
+          <label for="purpose">🎯 Purpose:</label>
+          <select id="purpose">
+            <option value="office">💼 Office Build</option>
+            <option value="gaming" selected>🎮 Gaming PC</option>
+            <option value="coders">💻 Development</option>
+            <option value="content">🎨 Content Creation</option>
+          </select>
+        </div>
+        <button id="go" class="btn-primary">
+          <span>🚀</span> Generate Build
+        </button>
+      </div>
+      <div class="hint">💡 Tip: Minimum budget is ₹20,000 for a functional PC.</div>
+    </section>
+
+    <section class="panel build-panel">
+      <h2>📊 Suggested Build</h2>
+      <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center;">
+        <button id="save-suggested-build" class="btn-secondary" style="display:none;"><span>💾</span> Save This Build</button>
+        <div id="save-status" class="hint" style="display:none;"></div>
+      </div>
+      <div id="build-table"></div>
+      <div id="build-summary" class="validation-result" style="white-space:pre-wrap;margin-top:8px;"></div>
+      <div id="build-issues" class="validation-result"></div>
+    </section>
+
+    <section class="panel performance-panel">
+      <h2>⚡ Performance Scores</h2>
+      <div id="perf-scores">
+        <div class="hint">
+          <span>🎯</span>
+          Click Generate to estimate FPS/scores for Valorant, Blender, Chrome, and basic apps.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel upgrades-panel">
+      <h2>💡 Upgrade Ideas (±₹2,000)</h2>
+      <div id="upgrade-ideas" class="upgrade-suggestions">
+        <div class="hint">
+          <span>💡</span>
+          Click Generate to see upgrade suggestions within your budget range.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 PC-SS Suggestions</p>
+      <div class="footer-links">
+        <a href="/" class="footer-link">🏠 Main Builder</a>
+        <a href="/admin.html" class="footer-link">⚙️ Admin Panel</a>
+        <a href="/privacy.html" class="footer-link">🔒 Privacy Policy</a>
+        <a href="/support.html" class="footer-link">🆘 Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button -->
+  <button class="fab" onclick="scrollToPerformance()" title="Jump to Performance Scores">
+    ⚡
+  </button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function scrollToPerformance() {
+      const perfPanel = document.querySelector('.performance-panel');
+      if (perfPanel) {
+        perfPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Add highlight effect
+        perfPanel.classList.add('highlight');
+        setTimeout(() => {
+          perfPanel.classList.remove('highlight');
+        }, 3000);
+      }
+    }
+  </script>
+  <script src="assets/js/suggestions.js" defer></script>
+</body>
+</html>
